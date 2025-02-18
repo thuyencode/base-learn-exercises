@@ -1,0 +1,39 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/ControlStructures/ControlStructures.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.17;\n\ncontract ControlStructures {\n    function fizzBuzz(\n        uint _number\n    ) external pure returns (string memory _result) {\n        _result = \"Splat\";\n\n        if (_number % 3 == 0) {\n            _result = \"Fizz\";\n        }\n\n        if (_number % 5 == 0) {\n            _result = string.concat(_result, \"Buzz\");\n        }\n    }\n\n    error AfterHours(uint _time);\n\n    function doNotDisturb(\n        uint _time\n    ) external pure returns (string memory _message) {\n        assert(_time < 2400);\n\n        if (_time < 800 || _time > 2200) {\n            revert AfterHours(_time);\n        }\n\n        if (_time >= 1200 && _time <= 1259) {\n            revert(\"At lunch\");\n        }\n\n        if (_time >= 800 && _time <= 1199) {\n            _message = \"Morning!\";\n        }\n\n        if (_time >= 1300 && _time <= 1799) {\n            _message = \"Afternoon!\";\n        }\n\n        if (_time >= 1800 && _time <= 2200) {\n            _message = \"Evening\";\n        }\n    }\n}\n"
+    },
+    "contracts/Deploying/BasicMath.sol": {
+      "content": "// SPDX-License-Identifier: SEE LICENSE IN LICENSE\npragma solidity ^0.8.17;\n\ncontract BasicMath {\n    function adder(\n        uint _a,\n        uint _b\n    ) external pure returns (uint _sum, bool _error) {\n        unchecked {\n            _sum = _a + _b;\n\n            if (_sum < _a) {\n                _sum = 0;\n                _error = true;\n            }\n        }\n    }\n\n    function subtractor(\n        uint _a,\n        uint _b\n    ) external pure returns (uint _difference, bool _error) {\n        if (_b > _a) {\n            _error = true;\n        } else {\n            _difference = _a - _b;\n        }\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

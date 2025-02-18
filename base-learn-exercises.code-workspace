@@ -20,6 +20,9 @@
     }
   },
   "extensions": {
-    "recommendations": ["ackeeblockchain.tools-for-solidity"]
+    "recommendations": [
+      "ackeeblockchain.tools-for-solidity",
+      "nomicfoundation.hardhat-solidity"
+    ]
   }
 }

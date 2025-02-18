@@ -10,10 +10,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const SALARY = 5000
   const ID_NUMBER = 112358132134
 
-  await deploy('EmployeeStorage', {
+  const deployment = await deploy('EmployeeStorage', {
     from: deployer,
     args: [SHARES, NAME, SALARY, ID_NUMBER]
   })
+
+  console.log('Deployed at address:', deployment.address)
 }
 
 export default func

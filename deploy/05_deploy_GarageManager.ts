@@ -5,7 +5,9 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   const { deploy } = hre.deployments
   const { deployer } = await hre.getNamedAccounts()
 
-  await deploy('GarageManager', { from: deployer })
+  const deployment = await deploy('GarageManager', { from: deployer })
+
+  console.log('Deployed at address:', deployment.address)
 }
 
 export default func

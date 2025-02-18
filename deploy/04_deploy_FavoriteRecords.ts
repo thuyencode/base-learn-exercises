@@ -17,7 +17,12 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     'Saturday Night Fever'
   ]
 
-  await deploy('FavoriteRecords', { from: deployer, args: [ALBUMS] })
+  const deployment = await deploy('FavoriteRecords', {
+    from: deployer,
+    args: [ALBUMS]
+  })
+
+  console.log('Deployed at address:', deployment.address)
 }
 
 export default func

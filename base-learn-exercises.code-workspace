@@ -12,7 +12,12 @@
     ],
     "prettier.trailingComma": "none",
     "prettier.singleQuote": true,
-    "prettier.semi": false
+    "prettier.semi": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "always",
+      "source.organizeImports": "always"
+    }
   },
   "extensions": {
     "recommendations": [

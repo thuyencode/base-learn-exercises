@@ -1,10 +1,19 @@
 {
   "name": "hardhat-project",
+  "scripts": {
+    "deploy": "hardhat deploy --network base_sepolia",
+    "verify": "hardhat etherscan-verify --network base_sepolia"
+  },
   "devDependencies": {
+    "@eslint/js": "^9.20.0",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@types/node": "^22.13.4",
+    "eslint": "^9.20.1",
+    "eslint-config-love": "^118.0.0",
     "hardhat": "^2.22.18",
-    "hardhat-deploy": "^0.14.0"
+    "hardhat-deploy": "^0.14.0",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.1"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Inheritance/InheritanceSubmission.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.17;\n\ncontract InheritanceSubmission {\n    address public salesPerson;\n    address public engineeringManager;\n\n    constructor(address _salesPerson, address _engineeringManager) {\n        salesPerson = _salesPerson;\n        engineeringManager = _engineeringManager;\n    }\n}\n\nabstract contract Employee {\n    uint public idNumber;\n    uint public managerId;\n\n    constructor(uint _idNumber, uint _managerId) {\n        idNumber = _idNumber;\n        managerId = _managerId;\n    }\n\n    function getAnnualCost() external view virtual returns (uint) {}\n}\n\ncontract Salaried is Employee {\n    uint public annualSalary;\n\n    constructor(\n        uint _idNumber,\n        uint _managerId,\n        uint _annualSalary\n    ) Employee(_idNumber, _managerId) {\n        annualSalary = _annualSalary;\n    }\n\n    function getAnnualCost() external view override returns (uint) {\n        return annualSalary;\n    }\n}\n\ncontract Hourly is Employee {\n    uint public hourlyRate;\n\n    constructor(\n        uint _idNumber,\n        uint _managerId,\n        uint _hourlyRate\n    ) Employee(_idNumber, _managerId) {\n        hourlyRate = _hourlyRate;\n    }\n\n    function getAnnualCost() external view override returns (uint) {\n        return hourlyRate * 2080;\n    }\n}\n\ncontract Manager {\n    uint[] public employeeIds;\n\n    function addReport(uint256 _idNumber) external {\n        employeeIds.push(_idNumber);\n    }\n\n    function resetReports() external {\n        delete employeeIds;\n    }\n}\n\ncontract Salesperson is Hourly {\n    constructor(\n        uint256 _idNumber,\n        uint256 _managerId,\n        uint256 _hourlyRate\n    ) Hourly(_idNumber, _managerId, _hourlyRate) {}\n}\n\ncontract EngineeringManager is Salaried, Manager {\n    constructor(\n        uint256 _idNumber,\n        uint256 _managerId,\n        uint256 _annualSalary\n    ) Salaried(_idNumber, _managerId, _annualSalary) {}\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

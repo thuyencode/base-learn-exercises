@@ -1,0 +1,149 @@
+{
+  "address": "0x6AccA7Cf5c622d68Bc393525D1926B56ff7bF7c0",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_idNumber",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_managerId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_hourlyRate",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "getAnnualCost",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "hourlyRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "idNumber",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "managerId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x9c19583182b7c4163707e61336cd88db6dc34c58235e5fded033872900dfaaad",
+  "receipt": {
+    "to": null,
+    "from": "0x68882565EF113CE63bc464aC86e3A765d34C05C7",
+    "contractAddress": "0x6AccA7Cf5c622d68Bc393525D1926B56ff7bF7c0",
+    "transactionIndex": 16,
+    "gasUsed": "173642",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xdce21cc6833c6a96ecb481802746f9fcd58c2be06627437f678e6d67160b0831",
+    "transactionHash": "0x9c19583182b7c4163707e61336cd88db6dc34c58235e5fded033872900dfaaad",
+    "logs": [],
+    "blockNumber": 22061380,
+    "cumulativeGasUsed": "2342471",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    55555,
+    12345,
+    20
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "2336cc388017c663613de2654a82727f",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_idNumber\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_managerId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_hourlyRate\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"getAnnualCost\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"hourlyRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"idNumber\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"managerId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Inheritance/InheritanceSubmission.sol\":\"Salesperson\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Inheritance/InheritanceSubmission.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.17;\\n\\ncontract InheritanceSubmission {\\n    address public salesPerson;\\n    address public engineeringManager;\\n\\n    constructor(address _salesPerson, address _engineeringManager) {\\n        salesPerson = _salesPerson;\\n        engineeringManager = _engineeringManager;\\n    }\\n}\\n\\nabstract contract Employee {\\n    uint public idNumber;\\n    uint public managerId;\\n\\n    constructor(uint _idNumber, uint _managerId) {\\n        idNumber = _idNumber;\\n        managerId = _managerId;\\n    }\\n\\n    function getAnnualCost() external view virtual returns (uint) {}\\n}\\n\\ncontract Salaried is Employee {\\n    uint public annualSalary;\\n\\n    constructor(\\n        uint _idNumber,\\n        uint _managerId,\\n        uint _annualSalary\\n    ) Employee(_idNumber, _managerId) {\\n        annualSalary = _annualSalary;\\n    }\\n\\n    function getAnnualCost() external view override returns (uint) {\\n        return annualSalary;\\n    }\\n}\\n\\ncontract Hourly is Employee {\\n    uint public hourlyRate;\\n\\n    constructor(\\n        uint _idNumber,\\n        uint _managerId,\\n        uint _hourlyRate\\n    ) Employee(_idNumber, _managerId) {\\n        hourlyRate = _hourlyRate;\\n    }\\n\\n    function getAnnualCost() external view override returns (uint) {\\n        return hourlyRate * 2080;\\n    }\\n}\\n\\ncontract Manager {\\n    uint[] public employeeIds;\\n\\n    function addReport(uint256 _idNumber) external {\\n        employeeIds.push(_idNumber);\\n    }\\n\\n    function resetReports() external {\\n        delete employeeIds;\\n    }\\n}\\n\\ncontract Salesperson is Hourly {\\n    constructor(\\n        uint256 _idNumber,\\n        uint256 _managerId,\\n        uint256 _hourlyRate\\n    ) Hourly(_idNumber, _managerId, _hourlyRate) {}\\n}\\n\\ncontract EngineeringManager is Salaried, Manager {\\n    constructor(\\n        uint256 _idNumber,\\n        uint256 _managerId,\\n        uint256 _annualSalary\\n    ) Salaried(_idNumber, _managerId, _annualSalary) {}\\n}\\n\",\"keccak256\":\"0xf762228717a3a86b14356d0ba77fbe53bd0ecf378ad1657cf27aed45da725ee1\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060405161016c38038061016c83398101604081905261002f91610040565b60009290925560015560025561006e565b60008060006060848603121561005557600080fd5b8351925060208401519150604084015190509250925092565b60f08061007c6000396000f3fe6080604052348015600f57600080fd5b506004361060465760003560e01c80633f83ea3b14604b57806359a7b3fe1460655780635cdee0c014606d578063f5895a0a146073575b600080fd5b605360005481565b60405190815260200160405180910390f35b605360025481565b6053607b565b605360015481565b6000600254610820608b91906090565b905090565b808202811582820484141760b457634e487b7160e01b600052601160045260246000fd5b9291505056fea26469706673582212205d8c13a0fe712abfb3b5dd9ad656c9147e2ee0b8235cac66016d819210e5677764736f6c63430008140033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060465760003560e01c80633f83ea3b14604b57806359a7b3fe1460655780635cdee0c014606d578063f5895a0a146073575b600080fd5b605360005481565b60405190815260200160405180910390f35b605360025481565b6053607b565b605360015481565b6000600254610820608b91906090565b905090565b808202811582820484141760b457634e487b7160e01b600052601160045260246000fd5b9291505056fea26469706673582212205d8c13a0fe712abfb3b5dd9ad656c9147e2ee0b8235cac66016d819210e5677764736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 24,
+        "contract": "contracts/Inheritance/InheritanceSubmission.sol:Salesperson",
+        "label": "idNumber",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 26,
+        "contract": "contracts/Inheritance/InheritanceSubmission.sol:Salesperson",
+        "label": "managerId",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 85,
+        "contract": "contracts/Inheritance/InheritanceSubmission.sol:Salesperson",
+        "label": "hourlyRate",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

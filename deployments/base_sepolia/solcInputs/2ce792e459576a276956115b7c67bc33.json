@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Structs/GarageManager.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.17;\n\ncontract GarageManager {\n    struct Car {\n        string make;\n        string model;\n        string color;\n        uint numberOfDoors;\n    }\n\n    mapping(address => Car[]) public garage;\n\n    function addCar(\n        string calldata _make,\n        string calldata _model,\n        string calldata _color,\n        uint _numberOfDoors\n    ) external {\n        garage[msg.sender].push(Car(_make, _model, _color, _numberOfDoors));\n    }\n\n    function getUserCars(address _user) public view returns (Car[] memory) {\n        return garage[_user];\n    }\n\n    function getMyCars() external view returns (Car[] memory) {\n        return getUserCars(msg.sender);\n    }\n\n    error BadCarIndex(uint _index);\n\n    function updateCar(\n        uint _index,\n        string calldata _make,\n        string calldata _model,\n        string calldata _color,\n        uint _numberOfDoors\n    ) external {\n        if (_index >= garage[msg.sender].length) {\n            revert BadCarIndex(_index);\n        }\n\n        garage[msg.sender][_index] = Car(_make, _model, _color, _numberOfDoors);\n    }\n\n    function resetMyGarage() external {\n        delete garage[msg.sender];\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

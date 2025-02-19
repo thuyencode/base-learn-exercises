@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Errors/ErrorTriageExercise.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.17;\n\ncontract ErrorTriageExercise {\n    function _absSubtractor(\n        uint _a,\n        uint _b\n    ) private pure returns (uint _difference) {\n        int a = int(_a);\n        int b = int(_b);\n\n        int difference = a - b;\n\n        if (difference < 0) {\n            _difference = uint(-difference);\n        } else {\n            _difference = uint(difference);\n        }\n    }\n\n    /**\n     * Finds the difference between each uint with it's neighbor (a to b, b to c, etc.)\n     * and returns a uint array with the absolute integer difference of each pairing.\n     */\n    function diffWithNeighbor(\n        uint _a,\n        uint _b,\n        uint _c,\n        uint _d\n    ) public pure returns (uint[] memory) {\n        uint[] memory results = new uint[](3);\n\n        results[0] = _absSubtractor(_a, _b);\n        results[1] = _absSubtractor(_b, _c);\n        results[2] = _absSubtractor(_c, _d);\n\n        return results;\n    }\n\n    /**\n     * Changes the _base by the value of _modifier. Base is always >= 1000. Modifiers can be\n     * between positive and negative 100;\n     */\n    function applyModifier(\n        uint _base,\n        int _modifier\n    ) public pure returns (int) {\n        return int(_base) + _modifier;\n    }\n\n    /**\n     * Pop the last element from the supplied array, and return the popped\n     * value (unlike the built-in function)\n     */\n    uint[] arr;\n\n    function popWithReturn() public returns (uint _element) {\n        uint index = arr.length - 1;\n        _element = arr[index];\n\n        arr.pop();\n    }\n\n    // The utility functions below are working as expected\n    function addToArr(uint _num) public {\n        arr.push(_num);\n    }\n\n    function getArr() public view returns (uint[] memory) {\n        return arr;\n    }\n\n    function resetArr() public {\n        delete arr;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

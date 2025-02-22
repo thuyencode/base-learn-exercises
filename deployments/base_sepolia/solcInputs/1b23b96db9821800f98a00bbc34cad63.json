@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/MinimalTokens/UnburnableToken.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.17;\n\ncontract UnburnableToken {\n    mapping(address => uint) public balances;\n    mapping(address => bool) public claimed;\n    uint public totalSupply;\n    uint public totalClaimed;\n\n    error TokensClaimed();\n    error AllTokensClaimed();\n    error UnsafeTransfer(address _to);\n\n    constructor() {\n        totalSupply = 100_000_000;\n    }\n\n    function claim() public {\n        if (totalClaimed == totalSupply) {\n            revert AllTokensClaimed();\n        }\n\n        if (claimed[msg.sender]) {\n            revert TokensClaimed();\n        }\n\n        balances[msg.sender] = 1000;\n        claimed[msg.sender] = true;\n        totalClaimed += 1000;\n    }\n\n    function safeTransfer(address _to, uint _amount) public {\n        if (_to == 0x0000000000000000000000000000000000000000) {\n            revert UnsafeTransfer(_to);\n        }\n\n        if (_to.balance == 0) {\n            revert UnsafeTransfer(_to);\n        }\n\n        balances[msg.sender] -= _amount;\n        balances[_to] += _amount;\n    }\n}\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

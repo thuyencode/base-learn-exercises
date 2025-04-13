@@ -1,6 +1,6 @@
 # Base Learn Exercises
 
-All the smart contracts I coded along with [Base Learn](https://docs.base.org/base-learn/docs/welcome) are publicly available in here.
+All the smart contracts I coded along with [Base Learn](https://docs.base.org/learn/welcome) are publicly available in here.
 
 Remember to create a new `.env` file according to [`.env.example`](./.env.example).
 
